@@ -1,0 +1,45 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+.container {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: 100px auto 50px;
+}
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2em;
+    padding: 10px;
+}
+.advert__main{
+display: flex;
+justify-content: center;
+}
+.advertbottom__main{
+    display: flex;
+    justify-content: space-around;
+}
+.main__site{
+    background-image: url("../src/components/Card/dog.png");
+}
+h1{
+    padding-left: 10px;
+}
+h3{
+    padding-left: 10px;
+}
+
+@media (max-width: 1260px) {
+    .container>* {
+        padding: 0 30px;
+    }
+    .cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

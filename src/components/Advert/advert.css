@@ -1,0 +1,15 @@
+.advert{
+    background-color: orangered;
+    height: 240px;
+    width: 700px;
+    border-radius: 20px;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    margin-top: -10px;
+}
+.advert__img{
+    height: 210px;
+    width: 210px; 
+    padding-top: 16px;
+}
