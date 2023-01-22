@@ -1,5 +1,4 @@
 .advert__bottom_1{
-    background-color: rgb(157, 255, 0);
     height: 210px;
     width: 600px;
     border-radius: 20px;
@@ -7,6 +6,10 @@
     display: flex;
     justify-content: space-around;
     margin: 10px;
+    background-image: url("green.jpg");
+    background-position: center;
+    background-size: cover;
+   
 }
 .dvertbottom__img_1{
     height: 210px;
@@ -14,7 +17,6 @@
     padding-top: 16px;
 }
 .advert__bottom_2{
-    background-color: rgb(0, 255, 128);
     height: 210px;
     width: 600px;
     border-radius: 20px;
@@ -22,6 +24,9 @@
     display: flex;
     justify-content: space-around;
     margin: 10px;
+    background-image: url("blue.jpg");
+    background-position: center;
+    background-size: cover;
 }
 .dvertbottom__img_2{
     height: 210px;

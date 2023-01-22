@@ -30,6 +30,20 @@ class Api {
             }
         })
     }
+    getProduct(id) {
+        return fetch(`${this.path}/products/${id}`, {
+            headers: {
+                "authorization": `Bearer ${this.token}`
+            }
+        });
+    }
+    getReview(id) {//получение отзыва о товаре
+        return fetch(`${this.path}/products/review/${id}`, {
+            headers: {
+                "authorization": `Bearer ${this.token}`
+            }
+        });
+    }
 }
 
 export {Api};

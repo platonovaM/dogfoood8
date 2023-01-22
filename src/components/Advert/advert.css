@@ -7,9 +7,16 @@
     display: flex;
     justify-content: space-around;
     margin-top: -10px;
+    background-image: url("fon.jpg");
+    background-position: center;
+    background-size: cover;
+   
+
 }
 .advert__img{
     height: 210px;
     width: 210px; 
     padding-top: 16px;
 }
+
+

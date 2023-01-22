@@ -25,14 +25,52 @@ justify-content: center;
     display: flex;
     justify-content: space-around;
 }
-.main__site{
-    background-image: url("../src/components/Card/dog.png");
-}
+
 h1{
+    padding-left: 10px;
+}
+h2{
     padding-left: 10px;
 }
 h3{
     padding-left: 10px;
+}
+.empty-block{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    height: 100%;
+    justify-content: center;
+}
+/* .empty-block>:not(svg){
+    font-size: 1.5rem;
+} */
+.empty-block svg{
+    font-size: 4rem;
+    fill:#b9b5b5
+}
+
+
+.empty-block .btn{
+    border: 1px solid rgb(107, 107, 107);
+    border-radius: 18px;
+    display: flex;
+    padding: 6px 12px;
+    background-color: orange;
+}
+.review{
+    border: 1px solid gray;
+    border-radius: 26px;
+    margin: 20px;
+}
+.btn_link{
+    border: 1px solid rgb(107, 107, 107);
+    border-radius: 18px;
+    display: flex;
+    padding: 6px 12px;
+    background-color: orange;
+    width: 50px;
 }
 
 @media (max-width: 1260px) {
