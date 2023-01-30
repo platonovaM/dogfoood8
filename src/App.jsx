@@ -1,5 +1,6 @@
 import React, {useState,useEffect} from "react";
-import {Routes, Route }from "react-router-dom"
+import {Routes, Route }from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./style.css";
 import products from "./assets/data.json";
 
@@ -9,14 +10,21 @@ import Modal from "./components/Modal";
 import Home from "./pages/Home.jsx";
 import Catalog from "./pages/Catalog.jsx";
 import Profile from "./pages/Profile";
-import Product from "./pages/Product"
+import Product from "./pages/Product";
+import AddForm from "./pages/AddForm";
+import AddReviw from "./pages/AddReviw";
+import Ctx from "./Ctx";
 
 import {Api} from "./Api.js";
+const PATH ="/";
 const smiles = [<span>^_^</span>, "=)", "O_o", ";(", "^_0", "@_@", "–_–"];
 
 const App = () => {
-    
-const [user, setUser] = useState(localStorage.getItem("user8"));
+    let usr = localStorage.getItem("user8");
+    if (usr) {
+        usr = JSON.parse(usr);
+    }
+    const [user, setUser] = useState(usr);
 const [token, setToken] = useState(localStorage.getItem("token8"));
 const [modalActive, setModalActive] = useState(false);
 const [api, setApi] = useState(new Api(token));
@@ -36,7 +44,11 @@ const [visibleGoods, setVisibleGoods] = useState(goods);
 
     useEffect(() => {
         setApi(new Api(token));
-        setUser(localStorage.getItem("user8"));
+        let usr = localStorage.getItem("user8");
+        if (usr) {
+            usr = JSON.parse(usr);
+        }
+        setUser(usr);
     }, [token])
 
     useEffect(() => {
@@ -61,30 +73,39 @@ const [visibleGoods, setVisibleGoods] = useState(goods);
         setVisibleGoods(goods);
     },[goods])
     return (
-        <>
-        <div className="container">
+        <Ctx.Provider value={{
+            user: user,
+            token: token,
+            api: api,
+            modalActive:modalActive,
+            goods:goods,
+            visibleGoods:visibleGoods,
+            setUser: setUser,
+            setToken: setToken,
+            setApi: setApi,
+            setModalActive: setModalActive,
+            setGoods: setGoods,
+            setVisibleGoods,
+            PATH: PATH
+        }}>
+        <div className="wrapper">
             <Header 
-                user={user} 
-                setUser={setUser} 
-                goods={goods}
-                searchGoods={setVisibleGoods}
-                setModalActive={setModalActive}
+                
             />
             <main>
-              {/* <div className="main__site"> 
-             {user ? <Catalog data={goods}/> : <Home data={products}/>} 
-             </div>  */}
             <Routes>
-                <Route path="/" element={<Home data={smiles}/>}/>
-                <Route path="/catalog" element={<Catalog data={visibleGoods}/>}/>
-                <Route path="/profile" element={<Profile setUser={setUser} user={user}/>}/>
-                <Route path="/catalog/:id" element={<Product/>}/>
+                <Route path={PATH} element={<Home data={smiles}/>}/>
+                <Route path={PATH+"catalog"} element={<Catalog data={smiles}/>}/>
+                <Route path={PATH+"profile"} element={<Profile/>}/>
+                <Route path={PATH+"catalog/:id"} element={<Product/>}/>
+                <Route path={PATH+"add"} element={<AddForm/>}/>
+                <Route path={PATH+"addRew/:id"} element={<AddReviw/>}/>
             </Routes>
             </main>
             <Footer/>
         </div>
-        <Modal isActive={modalActive} setState={setModalActive} api={api} setToken={setToken}/>
-    </>
+        <Modal />
+    </Ctx.Provider>
     )
 }
 export default App;

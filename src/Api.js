@@ -37,13 +37,50 @@ class Api {
             }
         });
     }
-    getReview(id) {//получение отзыва о товаре
+    getReview(id) {
         return fetch(`${this.path}/products/review/${id}`, {
             headers: {
                 "authorization": `Bearer ${this.token}`
             }
         });
     }
+    addProduct(body) {
+        return fetch(`${this.path}/products`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "authorization": `Bearer ${this.token}`
+            },
+            body: JSON.stringify(body)
+        })
+    }
+    delProduct(id) {
+        return fetch(`${this.path}/products/${id}`, {
+            method: "DELETE",
+            headers: {
+                "authorization": `Bearer ${this.token}`
+            }
+        });
+    }
+    addReview(id, body) {
+        return fetch(`${this.path}/products/review/${id}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "authorization": `Bearer ${this.token}`
+            },
+            body: JSON.stringify(body)
+        })
+    }
+    delReview(id) {
+        return fetch(`${this.path}/products/review/${id}/${id}`, {
+            method: "DELETE",
+            headers: {
+                "authorization": `Bearer ${this.token}`
+            }
+        });
+    }
+
 }
 
 export {Api};

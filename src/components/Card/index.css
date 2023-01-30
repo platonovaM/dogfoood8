@@ -9,7 +9,7 @@
     gap: 1em;
     justify-content: center;
     align-items: center;
-    background-color: rgba(190, 184, 184, 0.459);
+    background-color: white;
 }
 .card__heart {
     position: absolute;

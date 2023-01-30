@@ -6,10 +6,13 @@ a {
     text-decoration: none;
     color: inherit;
 }
-.container {
+.wrapper {
     min-height: 100vh;
     display: grid;
     grid-template-rows: 100px auto 50px;
+}
+.wrapper>*{
+    padding: 0 calc(50%-600px);
 }
 .cards {
     display: grid;
@@ -60,24 +63,92 @@ h3{
     background-color: orange;
 }
 .review{
-    border: 1px solid gray;
-    border-radius: 26px;
-    margin: 20px;
+    border-bottom: 1px solid rgb(189, 184, 184);
+    padding-top: 20px;
+    padding-bottom: 10px;
 }
 .btn_link{
-    border: 1px solid rgb(107, 107, 107);
-    border-radius: 18px;
+   color: #f10404;
     display: flex;
     padding: 6px 12px;
-    background-color: orange;
-    width: 50px;
+    
 }
 
 @media (max-width: 1260px) {
-    .container>* {
+    .wrapper>* {
         padding: 0 30px;
     }
     .cards {
         grid-template-columns: repeat(3, 1fr);
     }
+}
+
+.form-preview{
+    height: 148px;
+    background-size: contain;
+    background-position: top right;
+    background-repeat: no-repeat;
+}
+.rating_stars{
+    color: orangered;
+}
+.product_site{
+    padding-left: 50px;
+}
+.discount{
+    color: white;
+    background-color: rgb(224, 37, 24);
+    height: 28px;
+    width: 70px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 4px;
+}
+.img_disc_price{
+    display: flex;
+    justify-content: space-between;
+}
+.price_product{
+    width: 700px;
+    color: red
+}
+.saved_products{
+
+    width: 140px;
+    color:#b9b5b5;
+    display: flex;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    justify-content: space-around;
+}
+.delivery{
+    padding: 10px;
+    width: 280px;
+    background-color: #f3f0f0;
+    color: #313030cc; 
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    height: 38px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.MinecartLoaded{
+    color: gray;
+}
+.warranty{
+    padding: 10px;
+    width: 280px;
+    background-color: #f3f0f0;
+    color: #313030cc; 
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    
+}
+h4{
+    padding-top:30px;
 }
