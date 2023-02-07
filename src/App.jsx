@@ -2,7 +2,7 @@ import React, {useState,useEffect} from "react";
 import {Routes, Route }from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./style.css";
-import products from "./assets/data.json";
+
 
 import Header from "./components/Header/header";
 import Footer from "./components/Footer/footer";
@@ -16,6 +16,7 @@ import AddReviw from "./pages/AddReviw";
 import Ctx from "./Ctx";
 
 import {Api} from "./Api.js";
+import Favorites from "./pages/Favorites";
 const PATH ="/";
 const smiles = [<span>^_^</span>, "=)", "O_o", ";(", "^_0", "@_@", "–_–"];
 
@@ -30,6 +31,7 @@ const [modalActive, setModalActive] = useState(false);
 const [api, setApi] = useState(new Api(token));
 const [goods, setGoods] = useState([]);
 const [visibleGoods, setVisibleGoods] = useState(goods);
+const [favorites, setFavorites]=useState([]);
 
     useEffect(() => {
         if (token) {
@@ -71,6 +73,9 @@ const [visibleGoods, setVisibleGoods] = useState(goods);
 
     useEffect(()=>{
         setVisibleGoods(goods);
+        setFavorites(goods.filter(el =>{
+            el.likes.includes(user._id);
+        }))
     },[goods])
     return (
         <Ctx.Provider value={{
@@ -80,12 +85,14 @@ const [visibleGoods, setVisibleGoods] = useState(goods);
             modalActive:modalActive,
             goods:goods,
             visibleGoods:visibleGoods,
+            favorites: favorites,
             setUser: setUser,
             setToken: setToken,
             setApi: setApi,
             setModalActive: setModalActive,
             setGoods: setGoods,
-            setVisibleGoods,
+            setVisibleGoods: setVisibleGoods,
+            setFavorites: setFavorites,
             PATH: PATH
         }}>
         <div className="wrapper">
@@ -100,6 +107,7 @@ const [visibleGoods, setVisibleGoods] = useState(goods);
                 <Route path={PATH+"catalog/:id"} element={<Product/>}/>
                 <Route path={PATH+"add"} element={<AddForm/>}/>
                 <Route path={PATH+"addRew/:id"} element={<AddReviw/>}/>
+                <Route path ={PATH+"favorites"} element={<Favorites/>}/>
             </Routes>
             </main>
             <Footer/>
