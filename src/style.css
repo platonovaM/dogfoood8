@@ -1,11 +1,15 @@
 body {
     margin: 0;
     font-family: sans-serif;
+    /* padding-left: 10px;
+    padding-right: 10px; */
+    /* background-color: #611385; */
 }
 a {
     text-decoration: none;
     color: inherit;
 }
+
 .wrapper {
     min-height: 100vh;
     display: grid;
@@ -19,6 +23,7 @@ a {
     grid-template-columns: repeat(4, 1fr);
     gap: 2em;
     padding: 10px;
+    align-items: stretch;
 }
 .advert__main{
 display: flex;

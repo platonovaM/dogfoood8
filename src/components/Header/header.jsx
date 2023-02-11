@@ -24,20 +24,39 @@ export default ({ }) => {
         localStorage.removeItem("user8");
         setUser("");
     }
+
+    const btnSt={
+        color: "white",
+        width: "120px",
+        height:"38px",
+        backgroundColor: "#611385",
+        textDecoration: "none",
+        borderRadius: "18px",
+        display:"flex",
+        justifyContent:"center",
+        alignItems:"center",
+        textDecoration: "none"
+    }
+
+    const btnStyle={
+        color: "#611385"
+       
+    }
+
     return <header>
         <Link className="logo" to={PATH}><img src={Logo}></img></Link>
         <Search />
         <a className="basket" href=""><img src={Basket}></img></a>
         <nav className="menu">
-            {user &&<Link to ={PATH+"favorites"} className="badge-link">
+            {user &&<Link to ={PATH+"favorites"} className="badge-link" /*style ={btnStyle}*/>
                 <Heart style={{fontSize: "20px"}}/>
-                 <Badge>{favorites.length}</Badge>
+                 <Badge bg="danger" >{favorites.length}</Badge>
             </Link>}
-            {user &&<Link to ={PATH+"add"} className="badge-link">
+            {user &&<Link to ={PATH+"add"} className="badge-link" >
                 <PlusSquare style={{fontSize: "20px"}}/></Link>}
-           {user && user.name &&<Link to={PATH+"profile"}>{user.name}</Link>}
-            {!user && <a href="" onClick={logIn}><img className="profile" src={Profile}></img></a>}
-            {user && <a href="" onClick={logOut}>Выйти</a>}
+           {user && user.name &&<Link to={PATH+"profile"} style ={btnSt} ><button style ={btnSt}>{user.name}</button></Link>}
+            {!user && <button onClick={logIn}><img className="profile" src={Profile}></img></button>}
+            {user && <button   onClick={logOut} style ={btnSt}>Выйти</button>}
         </nav>
     </header>
 }

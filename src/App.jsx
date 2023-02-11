@@ -1,5 +1,5 @@
 import React, {useState,useEffect} from "react";
-import {Routes, Route }from "react-router-dom";
+import {Routes, Route, Link }from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./style.css";
 
@@ -13,6 +13,7 @@ import Profile from "./pages/Profile";
 import Product from "./pages/Product";
 import AddForm from "./pages/AddForm";
 import AddReviw from "./pages/AddReviw";
+import Fake from "./pages/Fake";
 import Ctx from "./Ctx";
 
 import {Api} from "./Api.js";
@@ -74,7 +75,7 @@ const [favorites, setFavorites]=useState([]);
     useEffect(()=>{
         setVisibleGoods(goods);
         setFavorites(goods.filter(el =>{
-            el.likes.includes(user._id);
+           return el.likes && el.likes.includes(user._id);
         }))
     },[goods])
     return (
@@ -99,7 +100,7 @@ const [favorites, setFavorites]=useState([]);
             <Header 
                 
             />
-            <main>
+            <main className="py-3">
             <Routes>
                 <Route path={PATH} element={<Home data={smiles}/>}/>
                 <Route path={PATH+"catalog"} element={<Catalog data={smiles}/>}/>
@@ -108,6 +109,7 @@ const [favorites, setFavorites]=useState([]);
                 <Route path={PATH+"add"} element={<AddForm/>}/>
                 <Route path={PATH+"addRew/:id"} element={<AddReviw/>}/>
                 <Route path ={PATH+"favorites"} element={<Favorites/>}/>
+                <Route path={PATH+"fake/:n/:title"} element={<Fake/>}/>
             </Routes>
             </main>
             <Footer/>
