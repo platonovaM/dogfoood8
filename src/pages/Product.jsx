@@ -6,7 +6,7 @@ import Ctx from "../Ctx";
 import Button from 'react-bootstrap/Button';
 
 
-export default({rating, pictures,name, price, description})=>{
+export default({rating, pictures,name, price, description,_id})=>{
     const{id}=useParams();
     const [product, setProduct] =useState({});
     const [review, setReview]=useState({});
@@ -16,7 +16,6 @@ export default({rating, pictures,name, price, description})=>{
         api.getProduct(id)
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 setProduct(data);
             })
         
@@ -26,7 +25,6 @@ export default({rating, pictures,name, price, description})=>{
         api.getReview(id)
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 setReview(data);
             })
     }, []);
@@ -66,6 +64,13 @@ export default({rating, pictures,name, price, description})=>{
         }
         return stars;
     }
+
+
+
+
+
+
+
     return<div className="product_site">
     { product&&product.author&&  product.author._id===user._id &&
     <button onClick={remove} className="btn" style={btnSt}><Trash3Fill/></button>
@@ -83,7 +88,6 @@ export default({rating, pictures,name, price, description})=>{
     <img src={product.pictures} alt={product.name} style={{height:"300px"}}/>
     </div>
     <div className="price_product"><h4>{product.price} ₽</h4>
-    <Button variant={"light"} style={btnStyle}><h5>В корзину</h5></Button>
     <div className="saved_products"><Heart/><h6> В избранное</h6></div>
     <div className="delivery"><MinecartLoaded className="MinecartLoaded"/><h6>Доставка по всему миру!</h6></div>
     <div className="warranty"><Award className="MinecartLoaded"></Award>

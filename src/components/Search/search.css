@@ -1,5 +1,5 @@
 .search-block {
-    min-width: 700px;
+    min-width: 500px;
     width: max-content;
     display: flex;
     align-items: center;
@@ -33,7 +33,7 @@
     cursor: pointer;
 }
 .search-block svg:hover {
-    fill: rgb(243, 231, 5);
+    fill: rgb(118, 65, 187);;
 }
 .search-result {
     position: absolute;

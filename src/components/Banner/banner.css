@@ -1,29 +1,54 @@
+
 .banner{
     height: 340px;
     width: auto;
-    background-color: rgba(255, 255, 0, 0.918);
+    background-color: rgb(255, 196, 0);
     padding-left: 200px;
     padding-top: 30px;
+    margin-top: -20px;
+    display: flex;
+    justify-content: space-between;
 }
-h1{
+.banner-text>h1{
     font-size: 36px;
-    font-family: cursive;
+    font-weight: bold;
+    color:  rgb(116, 2, 177);
+    width: 300px;
 }
-h3{
+.banner-text>h3{
     padding-bottom: 10px;
+    color:  rgb(116, 2, 177);
+    margin-bottom: 20px;
+    margin-top: 20px;
+    width: 410px;
+    font-size: 22px;
 }
 .btn__banner{
-    height: 46px;
-    width: 120px;
     border:none;
     border-radius: 20px;
     cursor: pointer;
     font-family: cursive;
     font-size: 17px;
+    color: white;
+    padding-left: 10px;
+    width: 100%;
+    background-color:rgb(116, 2, 177) ;
+    padding: 10px;
+    margin: 10px;
 }
 .btn__banner:hover{
-    color: blueviolet;
+    box-shadow: 0 0 5px rgba(34, 34, 34, 0.877);
+    color: white;
 }
 span{
     padding-left: 10px;
+}
+.banner__img{
+    height: 300px;
+    width: 500px;
+    margin-right: 50px;
+    padding-right: 50px;
+    padding-bottom: 15px;
+    border-radius: 15%;
+
 }

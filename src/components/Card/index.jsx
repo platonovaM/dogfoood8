@@ -3,13 +3,15 @@ import "./index.css";
 import Ctx from "../../Ctx"
 
 export default ({name, pictures,price, likes, _id}) => {
-    const {user,setFavorites, api, setGoods}=useContext(Ctx);
+    const {user,setFavorites, api, setGoods, setBasket}=useContext(Ctx);
     // const like=author._id===user._id
     const [like, setLike] = useState(likes&&likes.includes(user._id))
+    const [flag, setFlag] = useState(false);
 
     const update = (e)=>{
         e.stopPropagation();
         e.preventDefault();
+        setFlag(true);
         setLike(!like);
         api.setLike(_id, like)
             .then(res=>res.json())
@@ -24,21 +26,42 @@ export default ({name, pictures,price, likes, _id}) => {
      }
 
      useEffect(() =>{
-        api.getProducts()
-        .then(res=>res.json())
-        .then(data=>{
-            if(!data.error){
-                setGoods(data.products)
+        if (flag){
+            api.getProducts()
+            .then(res=>res.json())
+            .then(data=>{
+                if(!data.error){
+                    setGoods(data.products)
+                }
+            })
+        }
+     },[like])
+
+     const buy = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setBasket(prev => {
+            const test = prev.filter(el => el.id === _id)
+            if (test.length) {
+                return prev.map(el => {
+                    if (el.id === _id) {
+                        el.cnt++;
+                    }
+                    return el;
+                })
+            } else {
+                return [...prev, {id: _id, cnt: 1}]
             }
         })
-     },[like])
+    }
+
 
 
     return <div className="card">
         <img src={pictures} alt={name} style={{height:"100px"}}/> 
         {name}
         <h6>{price} Руб.</h6>
-        <button className="btn">Купить</button>
+        <button className="btn" onClick={buy}>Купить</button>
         <span className="card__heart" onClick={update}>
             {
                 like 

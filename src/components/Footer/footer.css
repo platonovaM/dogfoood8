@@ -1,14 +1,35 @@
 footer {
-    background-color: #222;
-    color: #fff;
+    background-color: rgb(255, 196, 0);
+    color: rgb(82, 3, 185);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    padding: 30px;
+    height: 190px;
 }
-.footer__copy {
-    font-size: 1.5em;
+.westen{
+    display: grid;
+    gap:40px;
 }
-.footer__text {
-    text-align: right;
+
+.nord, .bott, .osten, .westen{
+    opacity: 0.9;
+}
+.nord>p{
+    font-weight: bold ;
+}
+.westen>p{
+    font-weight: bold ;
+}
+.osten>p{
+    font-weight: bold ;
+}
+.bott>p {
+    font-weight: bold ;
+}
+.p{
+    font-size: 20px;
+}
+.min_p{
+    font-size: 12px;
 }

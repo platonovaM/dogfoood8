@@ -1,18 +1,17 @@
 import React, {useContext} from "react";
 import Search from "../Search/search";
 import {Link} from "react-router-dom";
-import "./header.css";
 import Logo from "./logo (1).svg";
+import "./header.css";
 
 import Basket from "./ic-cart.svg";
 import Profile from "./ic-profile.svg";
 import Ctx from "../../Ctx";
-import {PlusSquare, Heart}from "react-bootstrap-icons"
+import {PlusSquare, HeartFill, Basket3}from "react-bootstrap-icons"
 import{Badge} from "react-bootstrap"
 import Favorites from "../../pages/Favorites";
-
 export default ({ }) => {
-    const {user, setUser,  setModalActive, PATH, favorites }=useContext(Ctx);
+    const {user, setUser,  setModalActive, PATH, favorites, basket }=useContext(Ctx);
 
 
     const logIn = (e) => {
@@ -24,39 +23,25 @@ export default ({ }) => {
         localStorage.removeItem("user8");
         setUser("");
     }
-
-    const btnSt={
-        color: "white",
-        width: "120px",
-        height:"38px",
-        backgroundColor: "#611385",
-        textDecoration: "none",
-        borderRadius: "18px",
-        display:"flex",
-        justifyContent:"center",
-        alignItems:"center",
-        textDecoration: "none"
-    }
-
-    const btnStyle={
-        color: "#611385"
-       
-    }
-
     return <header>
         <Link className="logo" to={PATH}><img src={Logo}></img></Link>
         <Search />
-        <a className="basket" href=""><img src={Basket}></img></a>
         <nav className="menu">
-            {user &&<Link to ={PATH+"favorites"} className="badge-link" /*style ={btnStyle}*/>
-                <Heart style={{fontSize: "20px"}}/>
+            {user &&<Link to ={PATH+"favorites"} className="badge-link">
+                <HeartFill style={{fontSize: "24px", color: "rgb(141, 20, 141)"}}/>
                  <Badge bg="danger" >{favorites.length}</Badge>
             </Link>}
-            {user &&<Link to ={PATH+"add"} className="badge-link" >
-                <PlusSquare style={{fontSize: "20px"}}/></Link>}
-           {user && user.name &&<Link to={PATH+"profile"} style ={btnSt} ><button style ={btnSt}>{user.name}</button></Link>}
-            {!user && <button onClick={logIn}><img className="profile" src={Profile}></img></button>}
-            {user && <button   onClick={logOut} style ={btnSt}>Выйти</button>}
+            {user &&<Link to ={PATH+"basket"} className="badge-link">
+                <Basket3 style={{fontSize: "24px", color: "rgb(141, 20, 141)"}}/>
+                 <Badge bg="danger" >
+                    {basket.reduce((acc,el)=>acc+el.cnt,0)}
+                    </Badge>
+            </Link>}
+            {user &&<Link to ={PATH+"add"} >
+                <PlusSquare style={{fontSize: "20px", color: "rgb(141, 20, 141)"}}/></Link>}
+           {user && user.name &&<Link to={PATH+"profile"} className="name_btn">{user.name}</Link>}
+            {!user && <img className="profile" onClick={logIn} src={Profile}></img>}
+
         </nav>
     </header>
 }
